@@ -29,8 +29,9 @@ jobs:
         run: python3 -m pip install toml
 
       - name: Install rust
+        shell: bash
         run: |
-          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y ^
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
             --default-toolchain $(python3 ./build-tools/cargo-info-extractor/extract.py --rust-version)
 
       - name: Build
