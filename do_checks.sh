@@ -4,7 +4,7 @@ set -e
 set -o nounset
 
 SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
-PYTHON=$(which python || which python3)
+PYTHON=$(which python3 || which python)
 
 echo "which python = $(which python)"
 echo "which python3 = $(which python3)"
