@@ -49,11 +49,12 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Setup Python
-        uses: actions/setup-python@v6
+      # - name: Setup Python
+      #   uses: actions/setup-python@v6
 
       - name: Install python toml package
-        run: pip install -r ./build-tools/codecheck/requirements.txt
+        # run: pip install -r ./build-tools/codecheck/requirements.txt
+        run: python3 -m pip install toml --break-system-packages --user
 
       - name: Run checks
         run: bash ./do_checks.sh
