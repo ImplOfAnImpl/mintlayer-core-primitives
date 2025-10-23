@@ -1,0 +1,97 @@
+# name: Build and run tests
+
+# on:
+#   push:
+#     branches:
+#       - master
+#   pull_request:
+#     branches:
+#       - "**" # target all branches
+#   schedule:
+#     - cron: '15 0 * * *'  # every day at 00:15 UTC
+
+# env:
+#   CARGO_TERM_COLOR: always
+#   RUST_LOG: debug
+#   RUST_BACKTRACE: full
+#   ML_BRIDGE_PODMAN_TESTS: 1
+
+# jobs:
+#   build_windows:
+#     runs-on: windows-latest
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+#         with:
+#           submodules: recursive
+
+#       - name: Install python toml package
+#         run: python3 -m pip install toml
+
+#       - name: Install rust
+#         shell: bash
+#         run: |
+#           curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
+#             --default-toolchain $(python3 ./build-tools/cargo-info-extractor/extract.py --rust-version)
+
+#       - name: Build
+#         run: cargo build --locked
+
+#       - name: Run tests
+#         run: cargo test --all
+
+#       - name: Run doc tests
+#         run: cargo test --doc
+
+#   build_ubuntu:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout the repository
+#         uses: actions/checkout@v4
+#         with:
+#           submodules: recursive
+
+#       - name: Update local dependency repositories
+#         run: sudo apt-get update
+
+#       - name: Install build dependencies
+#         run: sudo apt-get install -yqq --no-install-recommends build-essential python3 python3-toml podman pkg-config
+
+#       - name: Install rust
+#         run: |
+#           curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
+#             --default-toolchain $(python3 ./build-tools/cargo-info-extractor/extract.py --rust-version)
+
+#       - name: Build
+#         run: cargo build --locked
+
+#       - name: Run tests
+#         run: cargo test --all
+
+#       - name: Run doc tests
+#         run: cargo test --doc
+
+#   build_macos:
+#     runs-on: macos-latest
+#     steps:
+#       - name: Checkout repository and submodules
+#         uses: actions/checkout@v4
+#         with:
+#           submodules: recursive
+  
+#       - name: Install python toml package
+#         run: python3 -m pip install toml --break-system-packages --user
+  
+#       - name: Install rust
+#         run: |
+#           curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
+#           --default-toolchain $(python3 ./build-tools/cargo-info-extractor/extract.py --rust-version)
+
+#       - name: Build
+#         run: cargo build --locked
+
+#       - name: Run tests
+#         run: cargo test --all
+
+#       - name: Run doc tests
+#         run: cargo test --doc
