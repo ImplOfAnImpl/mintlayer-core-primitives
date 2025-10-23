@@ -6,6 +6,12 @@ set -o nounset
 SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 PYTHON=$(which python || which python3)
 
+echo "which python = $(which python)"
+echo "which python3 = $(which python3)"
+echo "PYTHON = $PYTHON"
+
+python3 -c "import sys, site; print(sys.executable); print(sys.version); print(site.getusersitepackages()); print('usersite enabled:', site.ENABLE_USER_SITE)"
+
 cargo fmt --check
 
 # Install requirements with: pip install -r ./build-tools/codecheck/requirements.txt
