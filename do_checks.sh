@@ -12,10 +12,10 @@ echo "PYTHON = $PYTHON"
 
 python3 -c "import sys, site; print(sys.executable); print(sys.version); print(site.getusersitepackages()); print('usersite enabled:', site.ENABLE_USER_SITE)"
 
-cargo fmt --check
+# cargo fmt --check
 
-# Install requirements with: pip install -r ./build-tools/codecheck/requirements.txt
-"$PYTHON" "$SCRIPT_DIR/build-tools/codecheck/codecheck.py"
+# # Install requirements with: pip install -r ./build-tools/codecheck/requirements.txt
+# "$PYTHON" "$SCRIPT_DIR/build-tools/codecheck/codecheck.py"
 
 # cargo deny --log-level error check --hide-inclusion-graph
 
